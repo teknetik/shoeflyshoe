@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return Response("{'Data':'Hello World!'}", status=200, mimetype='application/json')
+    return render_template('index.html')
 
 @app.route("/delay")
 def delay():
