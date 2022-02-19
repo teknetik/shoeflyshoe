@@ -46,7 +46,7 @@ def login():
 @app.route('/authorize')
 def authorize():
     print("Authorization")
-    token = oauth.stepon.authorize_access_token()
+    token = oauth.stepon.authorize_access_token(method='POST')
     resp = oauth.stepon.get('user')
     profile = resp.json()
     # do something with the token and profile
