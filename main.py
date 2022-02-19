@@ -16,7 +16,7 @@ stepon = oauth.register(
     authorize_url='https://reprocloud.app:9444/stepon/stepcounts/oauth2/authorize',
     authorize_params={'method': 'POST'},
     api_base_url='https://reprocloud.app:9444/stepon/stepcounts/',
-    client_kwargs={'scopes': 'step_counts'},
+    client_kwargs={'scopes': 'step_counts', 'method': 'POST'},
     redirect_uri='https://shoeflyshoe.store',
 )
 
