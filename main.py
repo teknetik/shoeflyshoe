@@ -40,15 +40,14 @@ stepon = oauth.register(
 @app.route('/login')
 def login():
     print("Login")
-    redirect_uri = url_for('authorize', _external=True)
-    print(oauth.stepon.authorize_redirect(redirect_uri))
+    redirect_uri = url_for('authorize', _external=True, method='POST')
     return oauth.stepon.authorize_redirect(redirect_uri)
 
 @app.route('/authorize')
 def authorize():
     print("Authorization")
     token = oauth.stepon.authorize_access_token()
-    resp = oauth.stepon.get('account/verify_credentials.json')
+    resp = oauth.stepon.get('user')
     profile = resp.json()
     # do something with the token and profile
     return redirect('/')    
