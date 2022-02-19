@@ -41,6 +41,7 @@ stepon = oauth.register(
 def login():
     print("Login")
     redirect_uri = url_for('authorize', _external=True)
+    print(oauth.stepon.authorize_redirect(redirect_uri))
     return oauth.stepon.authorize_redirect(redirect_uri)
 
 @app.route('/authorize')
