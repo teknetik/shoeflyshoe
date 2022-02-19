@@ -41,16 +41,16 @@ stepon = oauth.register(
 def login():
     print("Login")
     redirect_uri = url_for('authorize', _external=True, method='POST')
-    return oauth.stepon.authorize_redirect(redirect_uri, method='POST')
+#     return stepon.authorize_redirect(redirect_uri, method='POST')
 
-@app.route('/authorize')
-def authorize():
-    print("Authorization")
-    token = oauth.stepon.authorize_access_token(method='POST')
-    resp = oauth.stepon.get('user')
-    profile = resp.json()
-    # do something with the token and profile
-    return redirect('/')    
+# @app.route('/authorize')
+# def authorize():
+#     print("Authorization")
+#     token = oauth.stepon.authorize_access_token(method='POST')
+#     resp = oauth.stepon.get('user')
+#     profile = resp.json()
+#     # do something with the token and profile
+#     return redirect('/')    
 
 @app.route("/")
 def main():
