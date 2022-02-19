@@ -30,7 +30,7 @@ def login():
 @app.route('/authorize')
 def authorize():
     stepon = oauth.create_client('stepon')
-    token = stepon.authorize_access_token()
+    token = oauth.stepon.authorize_access_token()
     resp = stepon.get('userinfo')
     user_info = resp.json
     return redirect('http://shoeflyshoe.store/')
