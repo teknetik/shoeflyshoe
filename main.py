@@ -23,12 +23,14 @@ stepon = oauth.register(
 
 @app.route('/login')
 def login():
+    print("Login")
     stepon = oauth.create_client('stepon')
     redirect_uri = url_for('authorize', _external=True)
     return stepon.authorize_redirect(redirect_uri)
 
 @app.route('/authorize')
 def authorize():
+    print("Authorize")
     stepon = oauth.create_client('stepon')
     token = oauth.stepon.authorize_access_token()
     resp = stepon.get('userinfo')
