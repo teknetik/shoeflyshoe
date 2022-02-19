@@ -1,9 +1,39 @@
-from flask import Flask, render_template, request, redirect, make_response, Response, send_from_directory, send_file
+from flask import Flask, url_for, render_template, request, redirect, make_response, Response, send_from_directory, send_file, session
 import time
-
+import jsonify
+from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
+app.secret_key = 'kongstrong'
 
+oauth = OAuth(app)
+stepon = oauth.register(
+    name='stepon',
+    client_id='NAzqk2VNCF5hJ2NpzmatyUuiOluVqer4',
+    client_secret='9AyBIuG62OvN3aQvxBK9yoi4uZNTyZ0D',
+    access_token_url='https://reprocloud.app:9443/stepon/stepcounts/oauth2/token',
+    access_token_params=None,
+    authorize_url='https://reprocloud.app:9443/stepon/stepcounts/oauth2/authorize',
+    authorize_params=None,
+    api_base_url='https://reprocloud.app:9443/stepon/stepcounts/',
+    client_kwargs={'scopes': 'step_counts'},
+)
+
+
+@app.route('/login')
+def login():
+    stepon = oauth.create_client('stepon')
+    redirect_uri = url_for('authorize', _external=True)
+    return stepon.authorize_redirect(redirect_uri)
+
+@app.route('/authorize')
+def authorize():
+    stepon = oauth.create_client('stepon')
+    token = stepon.authorize_access_tocken()
+    resp = stepon.get('userinfo')
+    user_info = resp.json
+    return redirect('/')
+    
 
 @app.route("/")
 def main():
@@ -19,3 +49,7 @@ def delay():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5001, use_reloader=False)
+
+
+
+
