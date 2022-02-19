@@ -48,7 +48,7 @@ def delay():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, use_reloader=False)
+    app.run(host='0.0.0.0', port=5001, use_reloader=False, ssl_context=('fullchain.pem', 'privkey.pem'))
 
 
 
