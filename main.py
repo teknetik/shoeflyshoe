@@ -11,7 +11,7 @@ stepon = oauth.register(
     name='stepon',
     client_id='NAzqk2VNCF5hJ2NpzmatyUuiOluVqer4',
     client_secret='9AyBIuG62OvN3aQvxBK9yoi4uZNTyZ0D',
-    access_token_url='https://reprocloud.app:9444/stepon/stepcounts/oauth2/token',
+    access_token_url='https://reprocloud.app:944/stepon/stepcounts/oauth2/token',
     access_token_params=None,
     authorize_url='https://reprocloud.app:9444/stepon/stepcounts/oauth2/authorize',
     authorize_params=None,
@@ -30,7 +30,7 @@ def login():
 @app.route('/authorize')
 def authorize():
     stepon = oauth.create_client('stepon')
-    token = stepon.authorize_access_tocken()
+    token = stepon.authorize_access_token()
     resp = stepon.get('userinfo')
     user_info = resp.json
     return redirect('http://shoeflyshoe.store/')
