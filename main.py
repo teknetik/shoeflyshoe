@@ -32,7 +32,7 @@ def authorize():
     token = stepon.authorize_access_tocken()
     resp = stepon.get('userinfo')
     user_info = resp.json
-    return redirect('/')
+    return redirect('http://shoeflyshoe.store/')
     
 
 @app.route("/")
